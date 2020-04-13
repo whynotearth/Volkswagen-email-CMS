@@ -1,11 +1,10 @@
 <template>
-  <div
-    class="max-w-sm m-auto bg-footer shadow-md mb-4 flex items-center sticky inset-x-0 top-0 z-10"
-  >
+  <div class="w-100 flex">
     <div>
       <svg class="w-20 h-20 text-inactive stroke-current">
-        <circle :cx="centerX" :cy="centerY" :r="radius" fill="transparent" />
+        <circle class="text-gray-300" :cx="centerX" :cy="centerY" :r="radius" fill="transparent" />
         <circle
+          :class="progressClasses"
           class="text-button stroke-current progress-bar"
           :cx="centerX"
           :cy="centerY"
@@ -18,16 +17,16 @@
           y="50%"
           dominant-baseline="middle"
           text-anchor="middle"
-          class="text-white text-sm fill-current stroke-0"
+          class="text-black text-sm fill-current stroke-0"
         >
-          {{ pageProgress }}
+          {{ progressText }}
         </text>
       </svg>
     </div>
-    <div class="flex-grow text-right leading-tight p-4">
-      <h3 class="text-2xl font-bold">{{ pageHeader(page) }}</h3>
-      <h4 class="text-inactive">
-        {{ pageSubheader(page) | formatPageSubHeader }}
+    <div class="flex-grow text-right flex items-end flex-col justify-center">
+      <h3 class="stepper-title text-primary text-xl mb-2">{{ stepHeader(currentStep) }}</h3>
+      <h4 class="leading-tight text-sm text-primary">
+        {{ stepSubheader(currentStep) | formatStepSubHeader }}
       </h4>
     </div>
   </div>
@@ -36,65 +35,52 @@
 <script>
 export default {
   name: 'CheckoutStepper',
-  data() {
-    return {
-      pageCount: 5,
-      radius: 25,
-      centerX: 40,
-      centerY: 40
-    };
-  },
-  methods: {
-    pageHeader(pageNum) {
-      switch (pageNum) {
-        case 1: {
-          return 'Customer Info';
-        }
-        case 2: {
-          return 'Customer Address';
-        }
-        case 3: {
-          return 'Delivery Time';
-        }
-        case 4: {
-          return 'Payment Method';
-        }
-        case 5: {
-          return 'Review & Order';
-        }
-        case 6: {
-          return '';
-        }
-        default: {
-          return '';
-        }
-      }
+  props: {
+    steps: {
+      default: []
     },
-    pageSubheader(pageNum) {
-      return this.pageHeader(pageNum + 1);
+    progressClasses: {
+      default: 'text-secondary'
+    },
+    stepsCount: {
+      type: Number,
+      required: true
+    },
+    currentStep: {
+      type: Number,
+      required: true
+    }
+  },
+  data: () => ({
+    radius: 25,
+    centerX: 40,
+    centerY: 40
+  }),
+  methods: {
+    stepHeader(currentStep) {
+      return this.steps[currentStep - 1] || '';
+    },
+    stepSubheader(currentStep) {
+      return this.stepHeader(currentStep + 1);
     }
   },
   computed: {
-    page() {
-      // TODO:
-      return 1
-    },
     circumference() {
       return 2 * Math.PI * this.radius;
     },
     percentageProgress() {
-      const pageProgressPercentage = this.page / this.pageCount;
-      return this.circumference * pageProgressPercentage;
+      const progressPercentage = this.currentStep / this.stepsCount;
+      return this.circumference * progressPercentage;
     },
     strokeDashArray() {
       return `${this.percentageProgress} ${this.circumference}`;
     },
-    pageProgress() {
-      return `${this.page} of ${this.pageCount}`;
+    progressText() {
+      return `${this.currentStep} of ${this.stepsCount}`;
     }
   },
   filters: {
-    formatPageSubHeader(subheader) {
+    formatStepSubHeader(subheader) {
       return subheader ? `Next: ${subheader}` : '';
     }
   }
@@ -109,5 +95,8 @@ svg {
 
 svg text {
   transform: rotate(90deg) translate(0, -5rem);
+}
+.stepper-title {
+  line-height: 1.181818;
 }
 </style>

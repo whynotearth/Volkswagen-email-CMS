@@ -31,7 +31,8 @@
         >
           Add Memo
         </router-link>
-      </div><div class="text-sm lg:flex-grow">
+      </div>
+      <div class="text-sm lg:flex-grow">
         <router-link
           v-if="isAuthenticated"
           to="/posts/add"

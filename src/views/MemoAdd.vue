@@ -1,18 +1,58 @@
 <template>
-  <div>
-    <PageNavigation />
-    <div class="container mx-auto bg-brand-gradient">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum accusamus placeat nesciunt repellendus veritatis laborum, perferendis laudantium distinctio eos. Placeat tenetur laudantium, fugit explicabo corporis eos est quibusdam soluta reiciendis minus, omnis excepturi hic nostrum quidem sequi quasi accusamus facere dignissimos saepe? Dolor nihil similique porro aliquid perspiciatis neque debitis distinctio saepe perferendis veniam, incidunt, ut qui ratione optio dicta non ab pariatur dignissimos delectus. Est veniam excepturi magni laborum beatae explicabo quisquam et, non modi nemo voluptates saepe magnam qui distinctio delectus eum quis exercitationem accusamus nam. Reprehenderit, ratione ipsa quaerat similique totam dicta sed! Temporibus, ab aperiam? Obcaecati.
+  <div class="page h-screen flex flex-col">
+    <HeaderSteppable />
+    <div class="scrollable-area flex-grow z-2 overflow-y-auto">
+      <div class="container py-4 overflow-y-auto">
+        <div class="">
+          start
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          end
+        </div>
+      </div>
     </div>
+    <footer class="page-footer h-20">
+      footer
+    </footer>
   </div>
 </template>
 
 <script>
-import PageNavigation from '@/components/PageNavigation.vue';
-// import InputText from '@/components/BaseInputText.vue';
+import HeaderSteppable from '@/components/HeaderSteppable.vue';
 
 export default {
   name: 'MemoAdd',
-  components: { PageNavigation }
+  components: { HeaderSteppable }
 };
 </script>
+
+
+<style scoped>
+.scrollable-area {
+  max-height: 
+}
+</style>
