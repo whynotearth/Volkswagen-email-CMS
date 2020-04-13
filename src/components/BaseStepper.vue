@@ -42,10 +42,6 @@ export default {
     progressClasses: {
       default: 'text-secondary'
     },
-    stepsCount: {
-      type: Number,
-      required: true
-    },
     currentStep: {
       type: Number,
       required: true
@@ -65,6 +61,9 @@ export default {
     }
   },
   computed: {
+    stepsCount() {
+      return this.steps.length
+    },
     circumference() {
       return 2 * Math.PI * this.radius;
     },
