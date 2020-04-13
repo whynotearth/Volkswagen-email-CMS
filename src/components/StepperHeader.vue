@@ -1,17 +1,20 @@
 <template>
   <div class="header-steppable bg-surface sticky inset-x-0 top-0 z-3 py-1">
     <div class="container">
-      <BaseStepper :steps="['Internal Memo', 'Preview Memo']" :current-step="1"></BaseStepper>
+      <BaseStepperCircle :steps="['Internal Memo', 'Preview Memo']" :current-step="step"></BaseStepperCircle>
     </div>
   </div>
 </template>
 
 <script>
-import BaseStepper from '@/components/BaseStepper.vue';
+import BaseStepperCircle from '@/components/BaseStepperCircle.vue';
 
 export default {
   name: 'StepperHeader',
-  components: { BaseStepper }
+  components: { BaseStepperCircle },
+  props: {
+    step: Number
+  }
 };
 </script>
 

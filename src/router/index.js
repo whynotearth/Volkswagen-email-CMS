@@ -30,9 +30,10 @@ const routes = [
     component: JumpstartTest
   },
   {
-    path: '/memo/add',
+    path: '/memo/add/:step?',
     name: 'MemoAdd',
-    component: MemoAdd
+    component: MemoAdd,
+    props: true
   }
 ];
 

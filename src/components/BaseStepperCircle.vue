@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     stepsCount() {
-      return this.steps.length
+      return this.steps.length;
     },
     circumference() {
       return 2 * Math.PI * this.radius;
