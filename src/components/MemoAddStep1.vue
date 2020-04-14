@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('jumpstart', ['update_to', 'update_description', 'update_date', 'update_subject']),
+    ...mapMutations('jumpstart', ['update_to', 'update_description', 'update_date', 'update_subject'])
   }
 };
 </script>

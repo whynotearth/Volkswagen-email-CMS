@@ -18,6 +18,7 @@ import StepperManager from '@/components/StepperManager.vue';
 import MemoAddStep1 from '@/components/MemoAddStep1.vue';
 import MemoAddStep2 from '@/components/MemoAddStep2.vue';
 // import SplashScreen from '@/components/SplashScreen.vue';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
   name: 'MemoAdd',
@@ -31,11 +32,13 @@ export default {
     steps: ['Internal Memo', 'Preview Memo']
   }),
   computed: {
+    ...mapGetters('jumpstart', ['get_to', 'get_subject', 'get_date', 'get_description']),
     currentStep() {
       return parseInt(this.step);
     }
   },
   methods: {
+    ...mapActions('jumpstart', ['test']),
     parseInt,
     changeStep(change) {
       const newStep = parseInt(this.step) + change;
@@ -45,10 +48,29 @@ export default {
       }
       const wasLastStep = newStep > this.steps.length;
       if (wasLastStep) {
-        console.log('TODO: submit');
-        return this.$router.push({ name: 'Home' });
+        return this.submit();
       }
       this.$router.push({ name: 'MemoAdd', params: { step: newStep } });
+    },
+    async submit() {
+      const params = {
+        body: {
+          date: this.get_date,
+          description: this.get_description,
+          to: this.get_to,
+          subject: this.get_subject
+        }
+      };
+      try {
+        console.log('params', params);
+
+        await this.test({ params });
+        alert('Successfully sent');
+      } catch (error) {
+        alert('Not sent, an error occured.');
+
+        console.log(error);
+      }
     }
   }
 };

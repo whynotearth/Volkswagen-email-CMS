@@ -26,7 +26,14 @@
       >
         <span class="mr-2">{{ stepHeaderNext(step) }}</span>
 
-        <svg class="transform -scale-x-1" width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="transform -scale-x-1"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"

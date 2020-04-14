@@ -21,10 +21,9 @@ export default {
     }
   },
   actions: {
-    async test(context, { params }) {
+    async test(context, payload) {
       try {
-        const data = await JumpStartService.test(params);
-        context.commit('update', data);
+        await JumpStartService.test(payload.params);
       } catch (error) {
         throw new Error('Error in jumstart test');
       }
