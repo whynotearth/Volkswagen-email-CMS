@@ -1,18 +1,13 @@
 <template>
   <div class="w-100 flex">
-    <div>
-      <BaseProgressCircle
-        :centerX="40"
-        :centerY="40"
-        :radius="25"
-        :percentageProgress="percentageProgress"
-      >
+    <div class="w-20 h-20">
+      <BaseProgressCircle :centerX="40" :centerY="40" :radius="25" :percentageProgress="percentageProgress">
         <text
           x="50%"
           y="50%"
           dominant-baseline="middle"
           text-anchor="middle"
-          class="text-black text-sm fill-current stroke-0"
+          class="progress-circle--content text-black text-sm fill-current stroke-0"
         >
           {{ progressText }}
         </text>
@@ -74,14 +69,6 @@ export default {
 </script>
 
 <style scoped>
-svg {
-  transform: rotate(-90deg);
-  stroke-width: 0.25rem;
-}
-
-svg text {
-  transform: rotate(90deg) translate(0, -5rem);
-}
 .stepper-title {
   line-height: 1.181818;
 }

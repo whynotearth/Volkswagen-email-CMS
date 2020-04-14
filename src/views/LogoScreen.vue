@@ -1,26 +1,18 @@
 <template>
   <div class="h-screen bg-brand-gradient flex items-center justify-center">
-    <div class="w-40 h-40">
-
-      <svg class="stroke-white w-full h-full">
-        <circle class="text-gray-300" :cx="centerX" :cy="centerY" :r="radius" fill="transparent" />
-        <circle
-          :class="progressClasses"
-          class="text-button stroke-current progress-bar"
-          :cx="centerX"
-          :cy="centerY"
-          :r="radius"
-          fill="transparent"
-          :stroke-dasharray="strokeDashArray"
-        />
-        
-      </svg>
-
-      <img
-        class="logo-screen--img w-full h-full mb-6 rounded-full p-1"
-        contain
-        src="https://res.cloudinary.com/whynotearth/image/upload/v1586859428/Volkswagen/cms/logo-light_um5gka.svg"
-      />
+    <div>
+      <div class="progress-wrapper mb-4">
+        <BaseProgressCircle :centerX="82" :centerY="82" :radius="80" :percentageProgress="progress">
+          <image
+            class="progress-circle--content"
+            x="10"
+            y="10"
+            width="144"
+            height="144"
+            xlink:href="https://res.cloudinary.com/whynotearth/image/upload/v1586859428/Volkswagen/cms/logo-light_um5gka.svg"
+          ></image>
+        </BaseProgressCircle>
+      </div>
 
       <p class="text-white headline">{{ title }}</p>
     </div>
@@ -28,18 +20,30 @@
 </template>
 
 <script>
+import BaseProgressCircle from '@/components/BaseProgressCircle.vue';
+
 export default {
   name: 'LogoScreen',
+  components: { BaseProgressCircle },
+  data: () => ({
+    progress: 0
+  }),
   props: {
     title: {
       default: ''
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.progress = 1
+    }, 300);
   }
 };
 </script>
 
 <style scoped>
-.logo-screen--img {
-  border: 4px solid white;
+.progress-wrapper {
+  width: 164px;
+  height: 164px;
 }
 </style>

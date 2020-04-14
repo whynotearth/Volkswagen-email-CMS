@@ -1,15 +1,26 @@
 <template>
-  <svg class="w-20 h-20 text-inactive stroke-current">
-    <circle class="text-gray-300" :cx="centerX" :cy="centerY" :r="radius" fill="transparent" />
+  <svg class="w-full h-full text-inactive stroke-current">
+    <!-- background circle -->
     <circle
+      :stroke-width="strokeWidth"
+      class="text-gray-300"
+      :cx="centerX"
+      :cy="centerY"
+      :r="radius"
+      fill="transparent"
+    />
+    <!-- progress circle -->
+    <circle
+      :stroke-width="strokeWidth"
       :class="progressClasses"
-      class="text-button stroke-current progress-bar"
+      class="text-button stroke-current"
       :cx="centerX"
       :cy="centerY"
       :r="radius"
       fill="transparent"
       :stroke-dasharray="strokeDashArray"
     />
+    <!-- content inside circle -->
     <slot />
   </svg>
 </template>
@@ -21,6 +32,9 @@ export default {
     centerX: Number,
     centerY: Number,
     radius: Number,
+    strokeWidth: {
+      default: 4
+    },
     percentageProgress: Number,
     progressClasses: {
       type: String,
@@ -40,3 +54,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+svg {
+  transform: rotate(-90deg);
+  stroke-width: 0.25rem;
+}
+
+svg .progress-circle--content {
+  transform: rotate(90deg) translate(0, -100%);
+}
+
+circle {
+  transition: stroke-dasharray 500ms ease-in-out;
+}
+</style>
