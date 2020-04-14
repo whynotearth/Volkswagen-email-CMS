@@ -10,12 +10,12 @@
           />
         </div>
         <hr />
-        <template v-if="get_response_error">
-          <p class="p-4 text-error font-bold">{{ get_response_error }}</p>
+        <template v-if="get_response_message.message">
+          <p :class="get_response_message.class" class="p-4 font-bold">{{ get_response_message.message }}</p>
           <hr />
         </template>
         <div class="p-4 body-1-mobile">
-          <p><b>Date:</b> {{ get_date }}</p>
+          <p class="mb-2"><b>Date:</b> {{ get_date }}</p>
           <p class="mb-2"><b>To:</b> {{ get_to }}</p>
           <p class="mb-2">{{ get_subject }}</p>
           <p>{{ get_description }}</p>
@@ -30,7 +30,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'MemoAddStep2',
   computed: {
-    ...mapGetters('jumpstart', ['get_to', 'get_subject', 'get_date', 'get_description', 'get_response_error'])
+    ...mapGetters('jumpstart', ['get_to', 'get_subject', 'get_date', 'get_description', 'get_response_message'])
   }
 };
 </script>

@@ -39,13 +39,13 @@ export default {
   },
   methods: {
     ...mapActions('jumpstart', ['test']),
-    ...mapMutations('jumpstart', ['update_response_error']),
+    ...mapMutations('jumpstart', ['update_response_message']),
     parseInt,
     changeStep(change) {
-      this.update_response_error('');
-      
+      this.update_response_message({ message: '' });
+
       const newStep = parseInt(this.step) + change;
-      
+
       const wantToExit = newStep < 1;
       if (wantToExit) {
         return this.$router.push({ name: 'Home' });
@@ -68,11 +68,14 @@ export default {
         }
       };
       try {
-        console.log('params', params);
-
         await this.test({ params });
       } catch (error) {
-        this.update_response_error('Not sent, an error occured.');
+        this.update_response_message({
+          // TODO: use network response
+          message: 'Not sent, please check the form fields.',
+          type: 'error',
+          class: 'text-error'
+        });
 
         console.log(error);
       }

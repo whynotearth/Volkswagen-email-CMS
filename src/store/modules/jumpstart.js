@@ -5,11 +5,15 @@ export default {
   namespaced: true,
   state: {
     form_data: {},
-    response_error: ''
+    response_message: {
+      type: '', // error, success
+      message: '',
+      class: '' // text-error text-success
+    }
   },
   mutations: {
-    update_response_error(state, payload) {
-      state.response_error = payload;
+    update_response_message(state, payload) {
+      state.response_message = payload;
     },
     update_to(state, payload) {
       state.form_data.to = payload;
@@ -38,6 +42,6 @@ export default {
     get_subject: state => state.form_data.subject,
     get_description: state => state.form_data.description,
     get_date: state => state.form_data.date,
-    get_response_error: state => state.response_error
+    get_response_message: state => state.response_message
   }
 };
