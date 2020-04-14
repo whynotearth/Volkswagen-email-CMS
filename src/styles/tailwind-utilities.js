@@ -33,7 +33,7 @@ const textUtilsPlugin = plugin(function({ addUtilities, theme, variants }) {
     '.headline': {
       fontSize: theme('fontSize.3xl'),
       fontWeight: theme('fontWeight.bold'),
-      lineHeight: '38px',
+      lineHeight: '38px'
       // color: 'rgba(0,0,0,0.87)'
     },
     '.title': {

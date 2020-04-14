@@ -69,7 +69,7 @@ export default {
       };
       try {
         await this.test({ params });
-        this.$router.push({name: 'Success', params: {title: 'Success!'}})
+        this.$router.push({ name: 'Success', params: { title: 'Success!' } });
       } catch (error) {
         this.update_response_message({
           // TODO: use network response

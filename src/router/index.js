@@ -41,7 +41,7 @@ const routes = [
     name: 'Success',
     component: LogoScreen,
     props: true
-  },
+  }
 ];
 
 const router = new VueRouter({
