@@ -1,7 +1,7 @@
 <template>
   <div class="page h-screen flex flex-col">
     <StepperHeader :steps="steps" :step="step" :options="options" />
-    <div class="scrollable-area flex-grow z-2 overflow-y-auto">
+    <div class="flex-grow z-2 overflow-y-hidden">
       <slot />
     </div>
     <StepperFooter

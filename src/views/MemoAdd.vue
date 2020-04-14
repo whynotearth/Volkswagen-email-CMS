@@ -5,7 +5,7 @@
     :options="{ submitText: 'Finish & Send', isLastStep: currentStep === steps.length }"
     @changeStep="changeStep"
   >
-    <div class="px-0 overflow-y-auto flex h-full">
+    <div class="px-0 overflow-y-auto flex flex-col h-full">
       <MemoAddStep1 v-if="currentStep === 1"></MemoAddStep1>
       <MemoAddStep2 v-if="currentStep === 2"></MemoAddStep2>
       <!-- <SplashScreen v-if="currentStep === 2"></SplashScreen> -->
@@ -39,17 +39,23 @@ export default {
   },
   methods: {
     ...mapActions('jumpstart', ['test']),
+    ...mapMutations('jumpstart', ['update_response_error']),
     parseInt,
     changeStep(change) {
+      this.update_response_error('');
+      
       const newStep = parseInt(this.step) + change;
-      const wasFirstStep = newStep < 1;
-      if (wasFirstStep) {
+      
+      const wantToExit = newStep < 1;
+      if (wantToExit) {
         return this.$router.push({ name: 'Home' });
       }
-      const wasLastStep = newStep > this.steps.length;
-      if (wasLastStep) {
+
+      const wantToFinish = newStep > this.steps.length;
+      if (wantToFinish) {
         return this.submit();
       }
+
       this.$router.push({ name: 'MemoAdd', params: { step: newStep } });
     },
     async submit() {
@@ -65,9 +71,8 @@ export default {
         console.log('params', params);
 
         await this.test({ params });
-        alert('Successfully sent');
       } catch (error) {
-        alert('Not sent, an error occured.');
+        this.update_response_error('Not sent, an error occured.');
 
         console.log(error);
       }

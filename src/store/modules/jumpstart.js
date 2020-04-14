@@ -4,20 +4,24 @@ import { JumpStartService } from '@whynotearth/meredith-axios';
 export default {
   namespaced: true,
   state: {
-    formData: {}
+    form_data: {},
+    response_error: ''
   },
   mutations: {
+    update_response_error(state, payload) {
+      state.response_error = payload;
+    },
     update_to(state, payload) {
-      state.formData.to = payload;
+      state.form_data.to = payload;
     },
     update_subject(state, payload) {
-      state.formData.subject = payload;
+      state.form_data.subject = payload;
     },
     update_description(state, payload) {
-      state.formData.description = payload;
+      state.form_data.description = payload;
     },
     update_date(state, payload) {
-      state.formData.date = payload;
+      state.form_data.date = payload;
     }
   },
   actions: {
@@ -30,9 +34,10 @@ export default {
     }
   },
   getters: {
-    get_to: state => state.formData.to,
-    get_subject: state => state.formData.subject,
-    get_description: state => state.formData.description,
-    get_date: state => state.formData.date
+    get_to: state => state.form_data.to,
+    get_subject: state => state.form_data.subject,
+    get_description: state => state.form_data.description,
+    get_date: state => state.form_data.date,
+    get_response_error: state => state.response_error
   }
 };
