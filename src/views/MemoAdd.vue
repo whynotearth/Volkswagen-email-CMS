@@ -6,24 +6,22 @@
     @changeStep="changeStep"
   >
     <div class="px-0 overflow-y-auto flex h-full">
-      <div v-if="currentStep === 1">
-        <div class="container p-6 flex-grow">
-
-        </div>
-      </div>
-      <div v-if="currentStep === 2" class="p-6 bg-primary flex-grow">
-        <div class="h-full bg-surface container px-0">surface</div>
-      </div>
+      <MemoAddStep1 v-if="currentStep === 1"></MemoAddStep1>
+      <MemoAddStep2 v-if="currentStep === 2"></MemoAddStep2>
+      <!-- <SplashScreen v-if="currentStep === 2"></SplashScreen> -->
     </div>
   </StepperManager>
 </template>
 
 <script>
 import StepperManager from '@/components/StepperManager.vue';
+import MemoAddStep1 from '@/components/MemoAddStep1.vue';
+import MemoAddStep2 from '@/components/MemoAddStep2.vue';
+// import SplashScreen from '@/components/SplashScreen.vue';
 
 export default {
   name: 'MemoAdd',
-  components: { StepperManager },
+  components: { StepperManager, MemoAddStep1, MemoAddStep2 },
   props: {
     step: {
       default: 1

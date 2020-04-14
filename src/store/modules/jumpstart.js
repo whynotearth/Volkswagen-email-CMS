@@ -1,15 +1,23 @@
 import { JumpStartService } from '@whynotearth/meredith-axios';
-import Vue from 'vue';
 // import { companySlug } from '@/constants/app';
 
 export default {
   namespaced: true,
   state: {
-    items: []
+    formData: {}
   },
   mutations: {
-    updateAll(state, payload) {
-      Vue.set(state, 'items', payload);
+    update_to(state, payload) {
+      state.formData.to = payload;
+    },
+    update_subject(state, payload) {
+      state.formData.subject = payload;
+    },
+    update_description(state, payload) {
+      state.formData.description = payload;
+    },
+    update_date(state, payload) {
+      state.formData.date = payload;
     }
   },
   actions: {
@@ -23,8 +31,9 @@ export default {
     }
   },
   getters: {
-    items: state => name => {
-      return state.items || [];
-    }
+    get_to: state => state.formData.to,
+    get_subject: state => state.formData.subject,
+    get_description: state => state.formData.description,
+    get_date: state => state.formData.date
   }
 };
