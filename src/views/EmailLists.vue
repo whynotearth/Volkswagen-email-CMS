@@ -2,7 +2,7 @@
   <div class="">
     <BaseAppBarHeader
       title="Email Lists"
-      :to-link="'campaign'"
+      to-link="/settings"
       :action="{ link: '/settings/email-lists/import', label: 'Add New' }"
     />
     <div class="flex">
