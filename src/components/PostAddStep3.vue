@@ -1,5 +1,21 @@
 <template>
   <div class="flex flex-col h-full">
+    <BaseDropdown placeholder="Select date" :options="dates" v-model="$v.date.$model">
+      <template #title="{ selectedOption }">
+        <span v-if="selectedOption" class="tg-body-mobile">
+          Schedule
+          <span class="ml-2 text-black em-medium">
+            {{ formatDate(selectedOption, 'dd MMM, yyyy') }}
+          </span>
+        </span>
+      </template>
+      <template #option="{ option }">
+        <span>
+          {{ formatDate(option) }}
+        </span>
+      </template>
+    </BaseDropdown>
+    <!--
     <div class="flex items-strech items-center border-b-1 border-divider bg-surface" @click="toggleDropdown()">
       <div
         class="container relative md:px-6 block flex-grow justify-between flex h-full items-center select-none px-4 pr-6 py-5"
@@ -21,7 +37,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div>-->
     <div class="flex flex-grow bg-brand-gradient overflow-y-auto narrow-scrollbars h-full">
       <div class="container relative px-0 md:px-6 text-left ">
         <div
@@ -55,33 +71,31 @@
 </template>
 
 <script>
-import ArrowDown from '@/assets/arrow-down.svg';
+import BaseDropdown from '@/components/BaseDropdown';
+import { required } from 'vuelidate/lib/validators';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { formatDate } from '@/helpers.js';
 
 export default {
   name: 'PostAddStep3',
-  components: { ArrowDown },
+  components: { BaseDropdown },
   props: {
     error: {
       type: Boolean,
       default: false
     }
   },
-  data() {
-    return {
-      isOpenDropdown: false
-    };
+  validations: {
+    date: {
+      required
+    }
   },
   mounted() {
     this.update_date(this.dates[0]);
   },
   methods: {
     ...mapMutations('post', ['update_date']),
-    formatDate,
-    toggleDropdown() {
-      this.isOpenDropdown = !this.isOpenDropdown;
-    }
+    formatDate
   },
   computed: {
     ...mapGetters('post', [
@@ -91,6 +105,14 @@ export default {
       'get_headline',
       'get_description'
     ]),
+    date: {
+      get() {
+        return this.get_date;
+      },
+      set(value) {
+        this.update_date(value);
+      }
+    },
     dates() {
       let d = new Date();
       d.setHours(0, 0, 0, 0);
@@ -107,19 +129,6 @@ export default {
 </script>
 
 <style scoped>
-.menu {
-  height: 224px;
-  position: absolute;
-  top: 54px;
-  background: white;
-  border-radius: 4px;
-  right: 0;
-  left: 0;
-  overflow-y: scroll;
-}
-.active {
-  background: rgba(3, 179, 249, 0.12);
-}
 .circle-icon {
   position: absolute;
   top: -16px;
@@ -131,8 +140,5 @@ export default {
   position: absolute;
   top: -24px;
   left: 24px;
-}
-.rotate-180 {
-  transform: rotate(180deg);
 }
 </style>
