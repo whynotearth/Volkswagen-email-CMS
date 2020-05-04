@@ -54,7 +54,7 @@
           <div class="flex items-center justify-center w-8 h-8 rounded-full bg-white circle-icon">
             <img class="m-auto w-4 h-4" :src="get_selected_category.image" />
           </div>
-          <img class="m-auto w-16" :src="get_selected_category.image" />
+          <img v-if="get_images" class="m-auto w-16" :src="get_images" />
           <div class="w-full tg-h2-mobile text-black py-3">
             {{ get_headline }}
           </div>
@@ -103,7 +103,8 @@ export default {
       'get_response_message',
       'get_selected_category',
       'get_headline',
-      'get_description'
+      'get_description',
+      'get_images'
     ]),
     date: {
       get() {
