@@ -5,7 +5,7 @@
         <span v-if="selectedOption" class="tg-body-mobile">
           Schedule
           <span class="ml-2 text-black em-medium">
-            {{ formatDate(selectedOption, 'dd MMM, yyyy') }}
+            {{ formatDate(selectedOption) }}
           </span>
         </span>
       </template>
