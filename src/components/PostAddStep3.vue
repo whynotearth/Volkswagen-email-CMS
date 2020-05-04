@@ -15,29 +15,6 @@
         </span>
       </template>
     </BaseDropdown>
-    <!--
-    <div class="flex items-strech items-center border-b-1 border-divider bg-surface" @click="toggleDropdown()">
-      <div
-        class="container relative md:px-6 block flex-grow justify-between flex h-full items-center select-none px-4 pr-6 py-5"
-      >
-        <span class="tg-body-mobile">
-          Schedule
-          <span class="ml-2 text-black em-medium">{{ formatDate(get_date, 'dd MMM, yyyy') }}</span>
-        </span>
-        <ArrowDown class="transform scale-x-1 text-gray" :class="{ 'rotate-180': isOpenDropdown }" />
-        <ul v-if="isOpenDropdown" class="menu shadow-8dp mx-2 md:mx-6 z-10 py-2">
-          <li
-            class="text-left"
-            :class="{ active: get_date === date }"
-            v-for="(date, index) in dates"
-            :key="index"
-            @click="update_date(date)"
-          >
-            <div class="tg-body-mobile p-4 block w-full cursor-pointer">{{ formatDate(date, 'dd MMM, yyyy') }}</div>
-          </li>
-        </ul>
-      </div>
-    </div>-->
     <div class="flex flex-grow bg-brand-gradient overflow-y-auto narrow-scrollbars h-full">
       <div class="container relative px-0 md:px-6 text-left ">
         <div
