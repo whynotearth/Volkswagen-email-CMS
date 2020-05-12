@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="text-center">
-    <transition name="fade" mode="out-in">
+    <transition name="slide" mode="out-in">
       <router-view />
     </transition>
-    <transition name="fade">
+    <transition name="slide">
       <div v-if="overlayModel.title || overlayModel.message" class="w-full h-full fixed block top-0 left-0 z-50">
         <OverlayBrand :title="overlayModel.title" :message="overlayModel.message"></OverlayBrand>
       </div>
