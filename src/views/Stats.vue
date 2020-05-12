@@ -35,7 +35,7 @@
       </div>
     </template>
     <template #footer>
-      <NavigationBottom active="stats" />
+      <NavigationBottom :activeItem="'stats'" />
     </template>
   </LayoutFixedScrollable>
 </template>

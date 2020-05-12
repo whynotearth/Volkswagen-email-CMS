@@ -19,7 +19,7 @@
       </div>
     </template>
     <template #footer>
-      <NavigationBottom />
+      <NavigationBottom :activeItem="'home'" />
     </template>
   </LayoutFixedScrollable>
 </template>

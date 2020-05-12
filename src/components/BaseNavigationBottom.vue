@@ -6,25 +6,40 @@
         <div class="flex relative">
           <ul class="flex-auto flex justify-around text-left menu list-none bg-primary px-2 md:px-0">
             <li class="text-white inline-block m-2 mb-1 text-xs">
-              <router-link class="text-white router-link" :to="{ name: 'Dashboard' }">
+              <router-link
+                :class="activeItem == 'home' ? 'text-white router-active-link' : 'text-white router-normal-link'"
+                :to="{ name: 'Dashboard' }"
+              >
                 <HomeIcon class="m-auto" />
                 Home
               </router-link>
             </li>
             <li class="text-white inline-block m-2 mb-1 text-xs">
-              <router-link class="text-white router-link" :to="{ name: 'Stats' }">
+              <router-link
+                :class="activeItem == 'stats' ? 'text-white router-active-link' : 'text-white router-normal-link'"
+                class="text-white router-link"
+                :to="{ name: 'Stats' }"
+              >
                 <StatsIcon class="m-auto" />
                 Stats
               </router-link>
             </li>
             <li class="text-white inline-block m-2 mb-1 text-xs">
-              <router-link class="text-white router-link" :to="{ name: 'JumpStartLists' }">
+              <router-link
+                :class="activeItem == 'bluedelta' ? 'text-white router-active-link' : 'text-white router-normal-link'"
+                class="text-white router-link"
+                :to="{ name: 'JumpStartLists' }"
+              >
                 <MemoStatslIcon class="m-auto" />
                 Blue Delta
               </router-link>
             </li>
             <li class="text-white inline-block m-2 mb-1 text-xs">
-              <router-link class="text-white router-link" :to="{ name: 'ArticleLists' }">
+              <router-link
+                :class="activeItem == 'article' ? 'text-white router-active-link' : 'text-white router-normal-link'"
+                class="text-white router-link"
+                :to="{ name: 'ArticleLists' }"
+              >
                 <BookingIcon class="m-auto" />
                 Article
               </router-link>
@@ -84,7 +99,11 @@ import StatsIcon from '@/assets/stats.svg';
 export default {
   name: 'NavigationBottom',
   components: { AddIcon, HomeIcon, MemoIcon, MemoStatslIcon, ArticleIcon, BookingIcon, StatsIcon },
-  props: {},
+  props: {
+    activeItem: {
+      type: String
+    }
+  },
   data() {
     return {
       isOpen: false
@@ -141,13 +160,22 @@ ul.toggle-menu.opened > li:nth-child(2) {
   top: -130px;
 }
 
-.router-link {
+.router-normal-link {
   opacity: 0.54;
 }
 
-.router-link svg path {
+.router-normal-link svg path {
   fill: white;
   fill-opacity: 0.54;
+}
+
+.router-active-link {
+  opacity: 0.9;
+}
+
+.router-active-link svg path {
+  fill: white;
+  fill-opacity: 0.9;
 }
 
 .container--border {
