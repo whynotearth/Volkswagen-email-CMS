@@ -1,13 +1,9 @@
 <template>
   <div id="app" class="text-center">
-    <transition name="slide" mode="out-in">
-      <router-view />
-    </transition>
-    <transition name="slide">
-      <div v-if="overlayModel.title || overlayModel.message" class="w-full h-full fixed block top-0 left-0 z-50">
-        <OverlayBrand :title="overlayModel.title" :message="overlayModel.message"></OverlayBrand>
-      </div>
-    </transition>
+    <router-view />
+    <div v-if="overlayModel.title || overlayModel.message" class="w-full h-full fixed block top-0 left-0 z-50">
+      <OverlayBrand :title="overlayModel.title" :message="overlayModel.message"></OverlayBrand>
+    </div>
   </div>
 </template>
 
@@ -32,6 +28,7 @@ html,
 body {
   scroll-behavior: smooth;
 }
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
