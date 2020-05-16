@@ -5,13 +5,21 @@
         Please select a category.
       </p>
 
-      <ul class="list-none bg-background">
+      <ul class="list-none bg-background slider-container">
         <!-- TODO: ENABLE COMMUNITY -->
         <li
           v-for="(category, index) in get_categories.filter(category => category.slug !== 'community')"
           :key="index"
-          class="text-left py-1 px-2"
+          class="text-left py-1 px-2 slide"
           :class="{ active: category.slug === get_selected_category.slug }"
+          :style="{
+            transform:
+              category.slug === get_selected_category.slug
+                ? 'translateY(' + (-index * 56 + 'px') + ')'
+                : index < get_selected_category.index
+                ? 'translateY(' + '56px' + ')'
+                : ''
+          }"
         >
           <a @click.prevent="selected_category = category" href="#" class="flex items-center">
             <div class="w-12 h-12">
@@ -48,6 +56,11 @@ export default {
   mounted() {
     this.fetch_categories();
   },
+  data() {
+    return {
+      selected_index: -1
+    };
+  },
   methods: {
     ...mapMutations('article', ['update_selected_category']),
     ...mapActions('article', ['fetch_categories'])
@@ -67,6 +80,13 @@ export default {
 </script>
 
 <style scoped>
+.slider-container {
+  display: flex;
+  flex-direction: column;
+}
+.slide {
+  transition: 1s ease;
+}
 .active {
   background: rgba(3, 179, 249, 0.12);
 }

@@ -27,7 +27,10 @@ export default {
   },
   mutations: {
     update_categories(state, payload) {
-      state.categories = payload;
+      var paload_with_index = payload.map((value, index) => {
+        return { ...value, index: index };
+      });
+      state.categories = paload_with_index;
     },
     update_headline(state, payload) {
       Vue.set(state.form_data, 'headline', payload);
