@@ -11,6 +11,9 @@
     </template>
 
     <template #content>
+      <div class="container py-4 flex justify-center" v-if="!is_fetch_memo">
+        <div class="loader"></div>
+      </div>
       <div class="container px-0 md:px-6 text-left">
         <div class="px-4 pt-4">
           <div class="mb-8" v-for="memoItem in get_memos" :key="memoItem.id">
@@ -48,8 +51,20 @@ export default {
   methods: {
     ...mapActions('memo', ['fetch_memos'])
   },
+  data() {
+    return {
+      is_fetch_memo: false
+    };
+  },
   mounted() {
-    this.fetch_memos();
+    this.is_fetch_memo = false;
+    try {
+      this.fetch_memos().then(() => {
+        this.is_fetch_memo = true;
+      });
+    } catch (error) {
+      console.log('fetch memos error');
+    }
   }
 };
 </script>
