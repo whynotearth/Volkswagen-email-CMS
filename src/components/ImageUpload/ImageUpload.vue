@@ -27,12 +27,12 @@
           :selectImage="selectImage"
           v-for="(image, index) in imagesToPreview"
           :key="index"
-          :image="image.src"
+          :image="image.url"
           :index="index"
         />
       </div>
       <ImagePreviewModal
-        v-if="selectedImageInfo.src && selectedImageInfo.index >= 0"
+        v-if="selectedImageInfo.url && selectedImageInfo.index >= 0"
         @deleteImage="deleteImage"
         @resetSelectedImage="resetSelectedImage"
         :image.sync="selectedImageInfo"
@@ -64,7 +64,7 @@ export default {
       images: [],
       imagesToPreview: [],
       selectedImageInfo: {
-        src: '',
+        url: '',
         index: null
       }
     };
@@ -84,13 +84,13 @@ export default {
       this.images.splice(index, 1);
       this.$emit('change', [...this.images]);
     },
-    selectImage([src, index]) {
-      this.selectedImageInfo.src = src;
+    selectImage([url, index]) {
+      this.selectedImageInfo.url = url;
       this.selectedImageInfo.index = index;
     },
     resetSelectedImage() {
       this.selectedImageInfo = {
-        src: '',
+        url: '',
         index: null
       };
     },
@@ -105,8 +105,12 @@ export default {
       }
     },
     getCloudinaryImageAdaptedObject(cloudinaryImageInfo) {
+      console.log('cloudinaryImageInfo', cloudinaryImageInfo);
+      const { url, height, width } = cloudinaryImageInfo;
       return {
-        src: cloudinaryImageInfo.url
+        url,
+        height,
+        width
       };
     }
   },
