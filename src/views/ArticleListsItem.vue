@@ -319,6 +319,7 @@ export default {
       this.update_price(this.selectedArticle.price);
       this.update_eventDate(formatDate(this.selectedArticle.eventDate));
       this.update_date(formatDate(this.selectedArticle.date));
+      this.update_image(this.selectedArticle.image);
     },
     isFieldRequired(fieldName) {
       if (!this.selectedArticle) {

@@ -53,6 +53,10 @@ export default {
   props: {
     defaultImages: {
       type: Array
+    },
+    value: {
+      type: Array,
+      required: true
     }
   },
   data() {
@@ -78,6 +82,7 @@ export default {
   methods: {
     deleteImage(index) {
       this.images.splice(index, 1);
+      this.$emit('change', [...this.images]);
     },
     selectImage([src, index]) {
       this.selectedImageInfo.src = src;
@@ -96,6 +101,7 @@ export default {
       if (result.event === 'success') {
         const images = [this.getCloudinaryImageAdaptedObject(result.info)];
         this.images = images;
+        this.$emit('change', [...images]);
       }
     },
     getCloudinaryImageAdaptedObject(cloudinaryImageInfo) {
@@ -105,8 +111,7 @@ export default {
     }
   },
   watch: {
-    images(val) {
-      this.$emit('change', [...val]);
+    value(val) {
       this.imagesToPreview = [...val];
     }
   }
