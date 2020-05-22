@@ -27,7 +27,7 @@
           :selectImage="selectImage"
           v-for="(image, index) in imagesToPreview"
           :key="index"
-          :image="image.url"
+          :image="image.src"
           :index="index"
         />
       </div>
