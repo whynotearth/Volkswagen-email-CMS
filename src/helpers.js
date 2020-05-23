@@ -161,6 +161,19 @@ export async function sleep(time) {
   });
 }
 
+export function getTabMeta() {
+  return [
+    {
+      title: 'TODAY',
+      value: 'today_tab'
+    },
+    {
+      title: 'UPCOMING',
+      value: 'upcoming_tab'
+    }
+  ];
+}
+
 export function randomId() {
   return Math.random()
     .toString()
