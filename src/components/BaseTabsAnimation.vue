@@ -1,15 +1,15 @@
 <template>
-  <div :class="wrapperClass" class="mt-2">
+  <div :class="wrapperClass">
     <div class="tabs">
       <div class="container px-0 md:px-6 flex tg-color-label-mobile w-screen justify-around">
         <button
-          class="tabs__item"
+          class="tabs_item w-2/4"
           type="button"
           v-for="tab in tabs"
           :ref="tab.value"
           :key="tab.title"
           :class="[
-            { tabs__item_active: tab.value === currentTab },
+            { tabs_item_active: tab.value === currentTab },
             tab.value === currentTab && tabActiveClass ? tabActiveClass : '',
             tabClass
           ]"
@@ -18,7 +18,7 @@
           v-html="tab.title"
         />
         <div
-          class="tabs__active-line"
+          class="tabs_active-line"
           :class="lineClass"
           :style="{ width: `${activeLineWidth}px`, transform: `translateX(${activeLineOffset}px)` }"
         />

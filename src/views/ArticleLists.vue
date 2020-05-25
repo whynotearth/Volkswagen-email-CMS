@@ -4,13 +4,13 @@
       <BaseAppBarHeader title="Articles" to-link="/" />
     </template>
     <template #content>
-      <tabs
+      <BaseTabsAnimation
         :tabs="tabs"
         :currentTab="currentTab"
         :wrapper-class="'disabled-tabs'"
-        :tab-class="'disabled-tabs__item'"
-        :tab-active-class="'disabled-tabs__item_active'"
-        :line-class="'disabled-tabs__active-line'"
+        :tab-class="'disabled-tabs_item'"
+        :tab-active-class="'disabled-tabs_item_active'"
+        :line-class="'disabled-tabs_active-line'"
         @onClick="handleClick"
       />
       <div class="tabs-details">
@@ -50,17 +50,16 @@ import BaseTab from '@/components/BaseTab.vue';
 import ArticleItem from '@/components/ArticleListsItem.vue';
 import LayoutFixedScrollable from '@/components/LayoutFixedScrollable.vue';
 import BaseNavigationBottom from '@/components/BaseNavigationBottom.vue';
-import Tabs from '@/components/BaseTabsAnimation.vue';
+import BaseTabsAnimation from '@/components/BaseTabsAnimation.vue';
 import { mapGetters, mapActions } from 'vuex';
 import { formatISODate, formatDate } from '@/helpers.js';
 import { isToday, parseISO } from 'date-fns';
-import { getTabMeta } from '@/helpers';
 
 export default {
   name: 'Articles',
   components: {
     BaseAppBarHeader,
-    Tabs,
+    BaseTabsAnimation,
     BaseTab,
     ArticleItem,
     LayoutFixedScrollable,
@@ -96,7 +95,16 @@ export default {
     }
   },
   data: () => ({
-    tabs: getTabMeta(),
+    tabs: [
+      {
+        title: 'TODAY',
+        value: 'today_tab'
+      },
+      {
+        title: 'UPCOMING',
+        value: 'upcoming_tab'
+      }
+    ],
     currentTab: 'today_tab'
   })
 };

@@ -10,19 +10,22 @@
 
 .disabled-tabs {
   position: relative;
-  margin: 0 auto;
-  &__item {
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  margin-top: 0;
+  &_item {
     display: inline-block;
-    margin: 0 5px;
     padding: 10px;
-    padding-bottom: 8px;
-    font-size: 16px;
-    letter-spacing: 0.8px;
-    color: gray;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    font-style: normal;
+    font-family: Work Sans;
+    color: #011D51;
     text-decoration: none;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
     transition: all 0.25s;
     &:hover {
@@ -31,30 +34,30 @@
     }
     &:focus {
       outline: none;
-      border-bottom: 2px solid gray;
-      color: blue;
+      border-bottom: 3px solid gray;
+      color: #03B3F9;
     }
     &_active {
-      color: blue;
+      color: #03B3F9;
     }
     &:disabled {
-      border-bottom: 2px solid transparent;
+      border-bottom: 3px solid transparent;
       color: gray;
       cursor: default;
     }
-    .tabs__item:first-child {
+    .tabs_item:first-child {
       margin-left: 0;
     }
-    .tabs__item:last-child {
+    .tabs_item:last-child {
       margin-right: 0;
     }
   }
-  &__active-line {
+  &_active-line {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 2px;
-    background-color: blue;
+    height: 3px;
+    background-color: #03B3F9;
     transition: transform 0.4s ease, width 0.4s ease;
   }
 }
