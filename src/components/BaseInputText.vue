@@ -21,6 +21,7 @@
           :id="idName"
           :type="type"
           :value="value"
+          @enter="keyup"
           @blur="onBlur"
           @focus="onFocus"
           @input="onInput"
@@ -73,6 +74,10 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    keyup: {
+      type: Boolean,
+      default: false
     },
     error: {
       type: Boolean

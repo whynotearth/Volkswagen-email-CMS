@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form ref="form" name="Login" @keyup.enter="submit($event)" @submit.prevent="" class="pt-6 pb-8 mb-4 text-left">
+    <form ref="form" name="Login" @submit.prevent="" class="pt-6 pb-8 mb-4 text-left">
       <div class="mb-4">
         <BaseInputText
           class="bg-surface"
@@ -38,13 +38,14 @@
       </div>
       <div class="auth-button">
         <!-- submit button -->
-        <button
+        <input
           class="bg-secondary w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-100 ease-in-out transition-all label-mobile"
           type="button"
-          @click="submit()"
-        >
-          Log In
-        </button>
+          value="Log In"
+          @enter="handleAuth()"
+          @click="handleAuth()"
+        />
+
         <div class="auth-recovery">
           <router-link
             :to="{ name: 'ResetPassword' }"
@@ -95,6 +96,15 @@ export default {
   },
   beforeDestroy() {
     this.cleanup();
+    window.removeEventListener('keypress', this.doCommand);
+  },
+  mounted() {
+    const self = this;
+    window.addEventListener('keyup', function(event) {
+      if (event.keyCode === 13) {
+        self.handleAuth();
+      }
+    });
   },
   methods: {
     cleanup() {
@@ -103,8 +113,7 @@ export default {
     updateActiveState(value) {
       this.$store.dispatch('auth/updateActiveState', value);
     },
-    submit(event) {
-      event.preventDefault();
+    handleAuth() {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return false;
