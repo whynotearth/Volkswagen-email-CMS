@@ -29,12 +29,12 @@
     cursor: pointer;
     transition: all 0.25s;
     &:hover {
-      border-bottom: 2px solid gray;
+      border-bottom: 3px solid rgba(0, 0, 0, 0.19);
       color: black;
     }
     &:focus {
       outline: none;
-      border-bottom: 3px solid gray;
+      border-bottom: 3px solid rgba(0, 0, 0, 0.19);
       color: #03B3F9;
     }
     &_active {
