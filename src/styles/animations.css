@@ -15,35 +15,29 @@
   &_item {
     display: inline-block;
     padding: 10px;
+    padding-left: 0;
+    padding-right: 0;
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0.02em;
     font-weight: 500;
     font-style: normal;
     font-family: Work Sans;
-    color: #011D51;
+    color: #011d51;
     text-decoration: none;
-    border: none;
     background-color: transparent;
     border-bottom: 3px solid transparent;
     cursor: pointer;
     transition: all 0.25s;
     &:hover {
-      border-bottom: 3px solid rgba(0, 0, 0, 0.19);
       color: black;
     }
     &:focus {
       outline: none;
-      border-bottom: 3px solid rgba(0, 0, 0, 0.19);
-      color: #03B3F9;
+      color: #03b3f9;
     }
     &_active {
-      color: #03B3F9;
-    }
-    &:disabled {
-      border-bottom: 3px solid transparent;
-      color: gray;
-      cursor: default;
+      color: #03b3f9;
     }
     .tabs_item:first-child {
       margin-left: 0;
@@ -57,7 +51,7 @@
     bottom: 0;
     left: 0;
     height: 3px;
-    background-color: #03B3F9;
+    background-color: #03b3f9;
     transition: transform 0.4s ease, width 0.4s ease;
   }
 }
