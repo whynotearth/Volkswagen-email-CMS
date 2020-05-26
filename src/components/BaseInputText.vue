@@ -21,7 +21,6 @@
           :id="idName"
           :type="type"
           :value="value"
-          @enter="keyup"
           @blur="onBlur"
           @focus="onFocus"
           @input="onInput"
