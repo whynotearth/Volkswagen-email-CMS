@@ -4,8 +4,8 @@
       <div class=" bg-primary flex-1"></div>
       <div class="container container--border px-0">
         <div class="flex relative">
-          <ul class="flex-auto flex bottom-icons-wrapper text-left menu list-none bg-primary px-2 md:px-0">
-            <li class="text-white inline-block m-2 mb-1 text-xs margin-right-wrapper">
+          <ul class="flex-auto flex justify-around text-left menu list-none bg-primary px-2 md:px-0">
+            <li class="text-white inline-block m-2 mb-1 text-xs tg-caption-desktop">
               <router-link
                 :active-class="'router-active-link'"
                 class="router-normal-link"
@@ -16,13 +16,13 @@
                 Home
               </router-link>
             </li>
-            <li class="text-white inline-block m-2 mb-1 text-xs margin-right-wrapper">
+            <li class="text-white inline-block m-2 mb-1 text-xs tg-caption-desktop">
               <router-link :active-class="'router-active-link'" class="router-normal-link" :to="{ name: 'Stats' }">
                 <StatsIcon class="m-auto" />
                 Stats
               </router-link>
             </li>
-            <li class="text-white inline-block m-2 mb-1 text-xs margin-right-wrapper">
+            <li class="text-white inline-block m-2 mb-1 text-xs tg-caption-desktop">
               <router-link
                 :active-class="'router-active-link'"
                 class="router-normal-link"
@@ -32,7 +32,7 @@
                 Blue Delta
               </router-link>
             </li>
-            <li class="text-white inline-block m-2 mb-1 text-xs margin-right-wrapper">
+            <li class="text-white inline-block m-2 mb-1 text-xs tg-caption-desktop">
               <router-link
                 :active-class="'router-active-link'"
                 class="router-normal-link"
@@ -44,7 +44,7 @@
             </li>
           </ul>
           <img
-            class="h-14"
+            class="h-16"
             src="https://res.cloudinary.com/whynotearth/image/upload/v1588090427/Volkswagen/cms/Bottom_Nav_2x_vzwf6q.svg"
           />
           <ul :class="{ opened: isOpen }" class="absolute toggle-menu list-none">
@@ -72,7 +72,7 @@
             </li>
           </ul>
           <div
-            class="absolute flex content-center w-14 h-14 opacity-100 rounded-full cursor-pointer toggle-button bg-secondary shadow-6dp"
+            class="absolute flex content-center w-16 h-16 opacity-100 rounded-full cursor-pointer toggle-button bg-secondary shadow-6dp"
             @click="toggleMenu()"
           >
             <AddIcon class="m-auto ease-in-out" :class="{ 'transform rotate-45': isOpen }" />
@@ -121,8 +121,8 @@ export default {
 
 <style scoped>
 .toggle-button {
-  top: -30px;
-  right: 16px;
+  top: -1.8rem;
+  right: 1.1rem;
 }
 
 .toggle-button:hover {
@@ -137,8 +137,8 @@ export default {
 }
 
 .toggle-menu {
-  top: -37px;
-  right: 23px;
+  top: -2rem;
+  right: 2rem;
 }
 
 .ease-in-out {
@@ -185,22 +185,7 @@ ul.toggle-menu.opened > li:nth-child(2) {
   @screen md {
     border-left: 24px solid;
     border-right: 24px solid;
-
     @apply border-primary;
-  }
-}
-
-.bottom-icons-wrapper {
-  justify-content: flex-start;
-  @media screen and (max-width: 660px) {
-    justify-content: space-around;
-  }
-}
-
-.margin-right-wrapper {
-  margin-right: calc(12.5% - 2rem);
-  @media screen and (max-width: 660px;) {
-    margin-right: 0;
   }
 }
 </style>
