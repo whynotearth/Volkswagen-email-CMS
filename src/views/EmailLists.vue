@@ -68,6 +68,10 @@ export default {
     ...mapMutations('distributionGroup', ['selectEmailList', 'updateEmailLists']),
     init() {
       this.getEmailLists();
+    },
+    choiceEmailList(payload) {
+      this.selectEmailList(payload);
+      this.$router.push({ name: 'UserList', params: { groupName: payload.distributionGroup } });
     }
   }
 };

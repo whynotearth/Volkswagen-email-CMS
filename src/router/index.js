@@ -23,6 +23,8 @@ import EmailListItem from '../views/EmailListItem';
 import EmailListImport from '../views/EmailListImport';
 import EmailListImportHelp from '../views/EmailListImportHelp';
 import Email from '@/views/Email';
+import UserList from '@/views/UserList';
+import UserListProfile from '../views/UserListProfile';
 import Dashboard from '../views/Dashboard';
 import BlueDeltaMain from '@/views/BlueDeltaMain';
 import JumpStartAdd from '../views/JumpStartAdd';
@@ -267,6 +269,16 @@ const routes = [
     path: '/settings/email-lists/:groupName/:id',
     name: 'EmailListItem',
     component: EmailListItem
+  },
+  {
+    path: '/settings/user-lists/:groupName',
+    name: 'UserList',
+    component: UserList
+  },
+  {
+    path: '/settings/user-lists/:groupName/user/:id',
+    name: 'UserListProfile',
+    component: UserListProfile
   }
 ];
 

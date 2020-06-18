@@ -12,6 +12,12 @@ export default {
     emails: [],
     selectedEmail: {},
     email: '',
+    user_form_data: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      segments: ''
+    },
     stats_overview: null,
     stats_overview_date_range: {
       text: '',
@@ -33,6 +39,18 @@ export default {
     },
     updateEmail(state, payload) {
       state.email = payload;
+    },
+    update_form_firstname(state, payload) {
+      Vue.set(state.user_form_data, 'first_name', payload);
+    },
+    update_form_lastname(state, payload) {
+      Vue.set(state.user_form_data, 'last_name', payload);
+    },
+    update_form_email(state, payload) {
+      Vue.set(state.user_form_data, 'email', payload);
+    },
+    update_form_segments(state, payload) {
+      Vue.set(state.user_form_data, 'segments', payload);
     },
     update_stats_overview(state, payload) {
       state.stats_overview = payload;
@@ -134,6 +152,19 @@ export default {
           });
       });
     },
+    exportList(context) {
+      return new Promise((resolve, reject) => {
+        DistributionGroupService.export({
+          distributionGroupName: context.state.selectedEmailList.distributionGroup
+        })
+          .then(data => {
+            resolve(data);
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    },
     async fetch_stats_overview({ commit }, payload) {
       const data = await DistributionGroupService.stats1(payload.params);
       commit('update_stats_overview', data);
@@ -171,6 +202,10 @@ export default {
     email: state => {
       return state.email;
     },
+    get_form_first_name: state => state.user_form_data.first_name,
+    get_form_last_name: state => state.user_form_data.last_name,
+    get_form_email: state => state.user_form_data.email,
+    get_form_segments: state => state.user_form_data.segments,
     get_stats_overview: state => state.stats_overview,
     get_stats_overview_date_range: state => state.stats_overview_date_range
   }
