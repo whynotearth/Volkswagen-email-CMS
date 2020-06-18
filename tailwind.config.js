@@ -51,6 +51,9 @@ module.exports = {
         '4': '4px',
         '8': '8px'
       },
+      borderRadius: {
+        xlg: '12px'
+      },
       fontFamily: {
         sans: ['Work Sans', ...defaultTheme.fontFamily.sans]
       },

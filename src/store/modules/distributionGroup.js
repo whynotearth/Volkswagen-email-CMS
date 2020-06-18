@@ -12,6 +12,12 @@ export default {
     emails: [],
     selectedEmail: {},
     email: '',
+    user_form_data: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      segments: ''
+    },
     stats_overview: null,
     stats_overview_date_range: {
       text: '',
@@ -33,6 +39,18 @@ export default {
     },
     updateEmail(state, payload) {
       state.email = payload;
+    },
+    update_form_firstname(state, payload) {
+      Vue.set(state.user_form_data, 'first_name', payload);
+    },
+    update_form_lastname(state, payload) {
+      Vue.set(state.user_form_data, 'last_name', payload);
+    },
+    update_form_email(state, payload) {
+      Vue.set(state.user_form_data, 'email', payload);
+    },
+    update_form_segments(state, payload) {
+      Vue.set(state.user_form_data, 'segments', payload);
     },
     update_stats_overview(state, payload) {
       state.stats_overview = payload;
@@ -102,14 +120,9 @@ export default {
           });
       });
     },
-    editEmail(context) {
+    editEmail(context, payload) {
       return new Promise((resolve, reject) => {
-        DistributionGroupService.recipients2({
-          // TODO: get groupName from param
-          distributionGroupName: context.state.selectedEmailList.distributionGroup,
-          recipientId: context.state.selectedEmail.id,
-          body: { email: context.state.selectedEmail.email }
-        })
+        DistributionGroupService.recipients2(payload)
           .then(data => {
             context.commit('updateEmail', '');
             resolve();
@@ -119,13 +132,9 @@ export default {
           });
       });
     },
-    deleteEmail(context) {
+    deleteEmail(context, payload) {
       return new Promise((resolve, reject) => {
-        DistributionGroupService.recipients3({
-          // TODO: get groupName from param
-          distributionGroupName: context.state.selectedEmailList.distributionGroup,
-          recipientId: context.state.selectedEmail.id
-        })
+        DistributionGroupService.recipients3(payload)
           .then(data => {
             resolve();
           })
@@ -171,6 +180,10 @@ export default {
     email: state => {
       return state.email;
     },
+    get_form_first_name: state => state.user_form_data.first_name,
+    get_form_last_name: state => state.user_form_data.last_name,
+    get_form_email: state => state.user_form_data.email,
+    get_form_segments: state => state.user_form_data.segments,
     get_stats_overview: state => state.stats_overview,
     get_stats_overview_date_range: state => state.stats_overview_date_range
   }
